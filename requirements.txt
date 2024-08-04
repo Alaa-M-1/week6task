@@ -1,3 +1,5 @@
 flask==2.2.5
 joblib
 werkzeug==2.2.3
+scikit-learn
+numpy
