@@ -1,14 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import joblib
-import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-
 
 app = Flask(__name__)
 
 # Load model and vectorizer
 model = joblib.load('lr_model.pkl')
 vectorizer = joblib.load('vect.pkl')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
