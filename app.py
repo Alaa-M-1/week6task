@@ -18,7 +18,11 @@ def predict():
     input_text = data['body']
     input_vector = vectorizer.transform([input_text])
     prediction = model.predict(input_vector)
-    return jsonify({'prediction': prediction.tolist()})
+    if prediction ==0:
+        return jsonify({'prediction': "The review is negative."})
+    else:
+        return jsonify({'prediction': "The review is positive."})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    port = int(os.environ.get('PORT', 5000))  # Use PORT from environment or default to 5000
+    app.run(host='0.0.0.0', port=port)
